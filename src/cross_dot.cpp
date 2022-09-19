@@ -24,3 +24,14 @@ std::string Display::draw()
 
     return output;
 }
+
+Status Controller::play()
+{
+   input_->enterInput();
+   input_->enterInput();
+   input_->enterInput();
+   input_->enterInput();
+   input_->enterInput();
+  
+  return Status::XWon;
+}

@@ -24,14 +24,10 @@ enum class Status {XWon,OWon};
 class Controller
 {
     public:
-    Controller(std::unique_ptr<Input> &&input):input_(std::move(input)){}
+    Controller(std::shared_ptr<Input> &input):input_(input){}
     Status play();
 
+    std::shared_ptr<Input> input_;
     private:
-    std::unique_ptr<Input> input_;
 };
 
-Status Controller::play()
-{
-    return Status::XWon;
-}

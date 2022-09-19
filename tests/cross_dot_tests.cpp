@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "cross_dot.h"
+#include <memory>
 
 using namespace testing;
 
@@ -39,10 +40,12 @@ TEST_F(DisplayFixture, IfDrawReturnsStringWithNewLines)
 
 TEST(CrossDotGameTest, GivenStraightColumnOfXAndOWhenRunPlayThenExpectStatusXWin)
 {
-    std::unique_ptr<Input> input = std::make_unique<MockInput>();
+    std::shared_ptr<MockInput> mock {std::make_shared<MockInput>()};
+
+    std::shared_ptr<Input> input { mock};
     Controller controller(input);
 
-    EXPECT_CALL(input, enterInput()).Times(5)
+    EXPECT_CALL(*mock, enterInput()).Times(5)
             .WillOnce(Return(1))
             .WillOnce(Return(4))
             .WillOnce(Return(2))
