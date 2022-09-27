@@ -56,3 +56,23 @@ TEST(CrossDotGameTest, GivenStraightColumnOfXAndOWhenRunPlayThenExpectStatusXWin
 
     EXPECT_EQ(status, Status::XWon);
 }
+
+TEST_F(DisplayFixture, TestIfInputChangesBoardStringToFiveXes)
+{
+    std::shared_ptr<MockInput> mock {std::make_shared<MockInput>()};
+
+    std::shared_ptr<Input> input { mock};
+    Controller controller(input);
+    
+    EXPECT_CALL(*mock, enterInput()).Times(5)
+            .WillOnce(Return(1))
+            .WillOnce(Return(4))
+            .WillOnce(Return(2))
+            .WillOnce(Return(5))
+            .WillOnce(Return(3));
+    
+    controller.play();
+    
+    std::string testString{"XXXXX...."};
+    EXPECT_EQ(testString,controller.getDisplay().getBoard());
+}
