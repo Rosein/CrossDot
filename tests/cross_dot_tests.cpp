@@ -57,7 +57,7 @@ TEST(CrossDotGameTest, GivenStraightColumnOfXAndOWhenRunPlayThenExpectStatusXWin
     EXPECT_EQ(status, Status::XWon);
 }
 
-TEST_F(DisplayFixture, TestIfInputChangesBoardStringToFiveXes)
+TEST_F(DisplayFixture, TestIfInputChangesBoardStringToThreeXesAndTwoOs)
 {
     std::shared_ptr<MockInput> mock {std::make_shared<MockInput>()};
 
@@ -73,6 +73,6 @@ TEST_F(DisplayFixture, TestIfInputChangesBoardStringToFiveXes)
     
     controller.play();
     
-    std::string testString{"XXXXX...."};
-    EXPECT_EQ(testString,controller.getDisplay().getBoard());
+    std::string testString{"XXXOO...."};
+    EXPECT_EQ(testString, controller.getDisplay().getBoard());
 }
