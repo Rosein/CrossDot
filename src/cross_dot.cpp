@@ -30,9 +30,22 @@ std::string Display::draw()
 
 Status Controller::play()
 {
+  bool is_in_X_turn{true};
+
   for(int i = 0; i < 5; i++)
   {
-    input_->enterInput();
+    auto position = input_->enterInput();
+
+    if(is_in_X_turn)
+    {
+      display_.setXat(position);
+    }
+    else
+    {
+      display_.setOat(position);
+    }
+
+    is_in_X_turn = !is_in_X_turn;
   }
   
   return Status::XWon;

@@ -17,7 +17,6 @@ public:
   std::string getBoard();
 
 private:
-
   void setCharAt(char character, int position);
   std::string board_;
 };
@@ -30,10 +29,12 @@ enum class Status {
 class Controller
 {
     public:
-    Controller(std::shared_ptr<Input> &input):input_(input){}
+    Controller(std::shared_ptr<Input> input):input_(input){}
     Status play();
+    Display getDisplay() const { return display_;}
 
-    std::shared_ptr<Input> input_;
-    private:
+  std::shared_ptr<Input> input_;
+  private:
+  Display display_;
 };
 
